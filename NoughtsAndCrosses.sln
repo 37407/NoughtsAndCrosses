@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoughtsAndCrosses", "NoughtsAndCrosses\NoughtsAndCrosses.csproj", "{FA1562C8-1C13-4E6F-8311-84459865E5E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoughtsAndCrosses", "NoughtsAndCrosses\NoughtsAndCrosses.csproj", "{FA1562C8-1C13-4E6F-8311-84459865E5E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoughtsAndCrosses.Tests", "NoughtsAndCrosses.Tests\NoughtsAndCrosses.Tests.csproj", "{3A7501D5-5D5C-4BA8-A5A3-F3E7DEC48B2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FA1562C8-1C13-4E6F-8311-84459865E5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA1562C8-1C13-4E6F-8311-84459865E5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA1562C8-1C13-4E6F-8311-84459865E5E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A7501D5-5D5C-4BA8-A5A3-F3E7DEC48B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A7501D5-5D5C-4BA8-A5A3-F3E7DEC48B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A7501D5-5D5C-4BA8-A5A3-F3E7DEC48B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A7501D5-5D5C-4BA8-A5A3-F3E7DEC48B2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
