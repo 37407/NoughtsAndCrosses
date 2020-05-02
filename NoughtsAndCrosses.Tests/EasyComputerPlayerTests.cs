@@ -9,9 +9,9 @@ namespace NoughtsAndCrosses.Tests
         [Fact]
         public void EasyComputerPlayer_PlayerInput_ReturnsBoard_OneDisplayCharacterMatchesComputerPlayerSymbol()
         {
-            var board = new BoardCreator().Board;
+            var board = new Board();
             var player = new EasyComputerPlayer();
-            var actual = player.PlayerInput(board);
+            var actual = player.PlayerInput(board.Squares);
 
             var actualSquareSymbols = new List<string>();
 
@@ -28,9 +28,9 @@ namespace NoughtsAndCrosses.Tests
         [Fact]
         public void EasyComputerPlayer_PlayerInput_ReturnsBoard_OneSquareStateMatchesComputerPlayerState()
         {
-            var board = new BoardCreator().Board;
+            var board = new Board();
             var player = new EasyComputerPlayer();
-            var actual = player.PlayerInput(board);
+            var actual = player.PlayerInput(board.Squares);
 
             var actualSquareStates = new List<SquareState>();
 

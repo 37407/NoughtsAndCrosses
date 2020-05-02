@@ -1,19 +1,19 @@
-﻿namespace NoughtsAndCrosses
-{
-    public class BoardCreator
-    {
-        public Square[,] Board { get; set; }
+﻿using System;
 
-        public BoardCreator()
+namespace NoughtsAndCrosses
+{
+    public class Board
+    {
+        public Board()
         {
-            Board = new Square[3, 3];
+            Squares = new Square[3, 3];
             int squareCount = 1;
 
             for (int x = 0; x <= 2; x++)
             {
                 for (int y = 0; y <= 2; y++)
                 {
-                    Board[x, y] = new Square
+                    Squares[x, y] = new Square
                     {
                         State = SquareState.Empty,
                         DisplayCharacter = squareCount.ToString()
@@ -22,5 +22,7 @@
                 }
             }
         }
+
+        public Square[,] Squares { get; set; }
     }
 }

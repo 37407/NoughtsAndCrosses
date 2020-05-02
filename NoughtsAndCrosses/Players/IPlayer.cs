@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace NoughtsAndCrosses
+﻿namespace NoughtsAndCrosses
 {
     public interface IPlayer
     {

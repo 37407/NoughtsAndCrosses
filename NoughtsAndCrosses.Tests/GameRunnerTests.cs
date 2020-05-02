@@ -29,12 +29,12 @@ namespace NoughtsAndCrosses.Tests
             IPlayer playerOne = new HumanPlayer(inputRetriever);
             IPlayer playerTwo = new EasyComputerPlayer();
 
-            var board = new BoardCreator().Board;
-            board[firstColumn, firstRow].State = SquareState.X;
-            board[secondColumn, secondRow].State = SquareState.X;
+            var board = new Board();
+            board.Squares[firstColumn, firstRow].State = SquareState.X;
+            board.Squares[secondColumn, secondRow].State = SquareState.X;
 
             GameRunner gameRunner = new GameRunner(inputRetriever, playerOne, playerTwo);
-            var actual = gameRunner.HandlePlayerTurn(board, playerOne);
+            var actual = gameRunner.HandlePlayerTurn(board.Squares, playerOne);
             Assert.True(actual);
         }
 
@@ -45,10 +45,10 @@ namespace NoughtsAndCrosses.Tests
             IPlayer playerOne = new HumanPlayer(inputRetriever);
             IPlayer playerTwo = new EasyComputerPlayer();
 
-            var board = new BoardCreator().Board;
+            var board = new Board();
 
             GameRunner gameRunner = new GameRunner(inputRetriever, playerOne, playerTwo);
-            var actual = gameRunner.HandlePlayerTurn(board, playerOne);
+            var actual = gameRunner.HandlePlayerTurn(board.Squares, playerOne);
             Assert.False(actual);
         }
     }

@@ -18,9 +18,9 @@ namespace NoughtsAndCrosses.Tests
         {
             IConsoleInputRetriever inputRetriever = new TestConsoleInputRetriever(userInput);
             HumanPlayer humanPlayer = new HumanPlayer(inputRetriever);
-            var board = new BoardCreator().Board;
+            var board = new Board();
 
-            var actual = humanPlayer.PlayerInput(board);
+            var actual = humanPlayer.PlayerInput(board.Squares);
 
             Assert.Equal("X", actual[column, row].DisplayCharacter);
             Assert.Equal(SquareState.X, actual[column, row].State);
