@@ -47,7 +47,7 @@ namespace NoughtsAndCrosses
             }
 
             Console.WriteLine("Play again?");
-            return _inputRetriever.UserInputReadKey();
+            return _inputRetriever.PlayAgainKeyPressed();
         }
 
         public void DisplayBoard(Square[,] board)

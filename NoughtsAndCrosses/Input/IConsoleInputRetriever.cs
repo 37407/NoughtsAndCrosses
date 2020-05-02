@@ -3,6 +3,6 @@
     public interface IConsoleInputRetriever
     {
         string UserInputReadLine();
-        bool UserInputReadKey();
+        bool PlayAgainKeyPressed();
     }
 }

@@ -6,8 +6,8 @@ namespace NoughtsAndCrosses
     {
         SquareState SquareOccupied { get; }
 
-        Square[,] PlayerInput(Square[,] board);
-
         string WinMessage { get; }
+
+        Square[,] PlayerInput(Square[,] board);
     }
 }

@@ -8,7 +8,8 @@
             ConsoleInputRetriever inputRetriever = new ConsoleInputRetriever();
             while (runGame)
             {
-                GameRunner gameRunner = new GameRunner(inputRetriever, new HumanPlayer(inputRetriever), new ComputerPlayer());
+                IPlayer computerPlayer = DifficultyLevelSelector.SetComputerPlayerLevel(inputRetriever);
+                GameRunner gameRunner = new GameRunner(inputRetriever, new HumanPlayer(inputRetriever), computerPlayer);
                 runGame = gameRunner.RunGame();
             }
         }

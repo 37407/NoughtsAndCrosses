@@ -8,6 +8,6 @@
 
         public string UserInputReadLine() => _input;
 
-        public bool UserInputReadKey() => false;
+        public bool PlayAgainKeyPressed() => false;
     }
 }

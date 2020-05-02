@@ -5,7 +5,7 @@ using Xunit;
 
 namespace NoughtsAndCrosses.Tests
 {
-    public class ComputerPlayerTests
+    public class DifficultyLevelSelectorTests
     {
         [Fact]
         public void Test1()

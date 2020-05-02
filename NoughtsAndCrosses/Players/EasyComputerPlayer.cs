@@ -2,7 +2,7 @@
 
 namespace NoughtsAndCrosses
 {
-    public class ComputerPlayer : IPlayer
+    public class EasyComputerPlayer : IPlayer
     {
         public SquareState SquareOccupied => SquareState.O;
 
