@@ -13,24 +13,11 @@ namespace NoughtsAndCrosses
 
         public GameRunner(IConsoleInputRetriever inputRetriever, IPlayer playerOne, IPlayer playerTwo)
         {
-            _board = new Square[3, 3];
-            int squareCount = 1;
 
-            for (int x = 0; x <= 2; x++)
-            {
-                for (int y = 0; y <= 2; y++)
-                {
-                    _board[x, y] = new Square
-                    {
-                        State = SquareState.Empty,
-                        DisplayCharacter = squareCount.ToString()
-                    };
-                    squareCount++;
-                }
-            }
             _inputRetriever = inputRetriever;
             _playerOne = playerOne;
             _playerTwo = playerTwo;
+            _board = new BoardCreator().Board;
             _turnCounter = 0;
             _gameOver = false;
         }

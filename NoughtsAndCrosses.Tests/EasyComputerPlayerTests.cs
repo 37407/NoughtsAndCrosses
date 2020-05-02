@@ -8,7 +8,7 @@ namespace NoughtsAndCrosses.Tests
     public class EasyComputerPlayerTests
     {
         [Fact]
-        public void Test1()
+        public void EasyComputerPlayer_ReturnsBoard_OneSquareStateMatchesComputerPlayerSymbol()
         {
 
         }
