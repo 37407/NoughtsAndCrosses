@@ -37,7 +37,7 @@ namespace NoughtsAndCrosses
             return _inputRetriever.PlayAgainKeyPressed();
         }
 
-        public void DisplayBoard(Square[,] board)
+        private void DisplayBoard(Square[,] board)
         {
             Console.WriteLine();
             Console.WriteLine(" {0} | {1} | {2} ", board[0, 0].DisplayCharacter, board[0, 1].DisplayCharacter, board[0, 2].DisplayCharacter);
