@@ -6,9 +6,9 @@ namespace NoughtsAndCrosses
 {
     public class MediumComputerPlayer : IPlayer
     {
-        public SquareState SquareOccupied => throw new NotImplementedException();
+        public SquareState SquareOccupied => SquareState.O;
 
-        public string WinMessage => throw new NotImplementedException();
+        public string WinMessage => "Player O wins!";
 
         public Square[,] PlayerInput(Square[,] board)
         {
