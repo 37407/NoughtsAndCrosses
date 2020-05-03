@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NoughtsAndCrosses
+﻿namespace NoughtsAndCrosses
 {
     public class Board
     {
