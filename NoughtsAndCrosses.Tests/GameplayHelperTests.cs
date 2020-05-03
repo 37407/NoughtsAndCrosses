@@ -2,7 +2,7 @@
 
 namespace NoughtsAndCrosses.Tests
 {
-    public class WinCheckerTests
+    public class GameplayHelperTests
     {
         [Theory]
         [InlineData(1, 0, 1, 1, 1, 2, true)]
@@ -17,7 +17,7 @@ namespace NoughtsAndCrosses.Tests
             board.Squares[secondColumn, secondRow].State = SquareState.X;
             board.Squares[thirdColumn, thirdRow].State = SquareState.X;
 
-            bool actual = WinChecker.CheckForWin(board.Squares, SquareState.X);
+            bool actual = GameplayHelper.CheckForWin(board.Squares, SquareState.X);
 
             Assert.Equal(isWin, actual);
         }

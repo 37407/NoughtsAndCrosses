@@ -13,9 +13,9 @@ namespace NoughtsAndCrosses
 
         public Square[,] PlayerInput(Square[,] board)
         {
-            var availableMoves = ListEmptySquares(board);
+            var availableMoves = GameplayHelper.ListEmptySquares(board);
 
-            var computerWin = CheckForWinningSquare(board, availableMoves, SquareState.O);
+            var computerWin = GameplayHelper.CheckForWinningSquare(board, availableMoves, SquareState.O);
             if (computerWin != null)
             {
                 board[computerWin[0], computerWin[1]].State = this.SquareOccupied;
@@ -23,7 +23,7 @@ namespace NoughtsAndCrosses
                 return board;
             }
 
-            var humanWin = CheckForWinningSquare(board, availableMoves, SquareState.X);
+            var humanWin = GameplayHelper.CheckForWinningSquare(board, availableMoves, SquareState.X);
             if (humanWin != null)
             {
                 board[humanWin[0], humanWin[1]].State = this.SquareOccupied;
@@ -45,34 +45,6 @@ namespace NoughtsAndCrosses
                 }
             }
             return board;
-        }
-
-        private List<int[]> ListEmptySquares(Square[,] board)
-        {
-            List<int[]> emptySquares = new List<int[]>();
-            for (int y = 0; y <= 2; y++)
-            {
-                for (int x = 0; x <= 2; x++)
-                {
-                    if (board[y, x].State == SquareState.Empty)
-                    {
-                        emptySquares.Add(new int[] { y, x });
-                    }
-                }
-            }
-            return emptySquares;
-        }
-
-        private int[] CheckForWinningSquare(Square[,] board, List<int[]> availableMoves, SquareState player)
-        {
-            foreach (var square in availableMoves)
-            {
-                board[square[0], square[1]].State = player;
-                bool playerCanWin = WinChecker.CheckForWin(board, player);
-                board[square[0], square[1]].State = SquareState.Empty;
-                if (playerCanWin) return square;
-            }
-            return null;
         }
     }
 }

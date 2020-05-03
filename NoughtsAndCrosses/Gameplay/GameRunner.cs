@@ -52,7 +52,7 @@ namespace NoughtsAndCrosses
         {
             player.PlayerInput(board);
             _turnCounter++;
-            bool gameOver = WinChecker.CheckForWin(board, player.SquareOccupied);
+            bool gameOver = GameplayHelper.CheckForWin(board, player.SquareOccupied);
             if (gameOver)
             {
                 Console.WriteLine(player.WinMessage);
