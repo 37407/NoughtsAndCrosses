@@ -7,53 +7,43 @@ namespace NoughtsAndCrosses
     {
         public SquareState SquareOccupied => SquareState.O;
 
+        public string DisplayCharacter => "O";
+
         public string WinMessage => "Player O wins!";
 
         public Square[,] PlayerInput(Square[,] board)
         {
-            bool turnComplete = false;
             var availableMoves = ListEmptySquares(board);
 
-            foreach (var square in availableMoves)
+            var computerWin = CheckForWinningSquare(board, availableMoves, SquareState.O);
+            if (computerWin != null)
             {
-                bool computerCanWin = DetermineOutcomeOfMove(board, square, SquareState.O);
-                if (computerCanWin && !turnComplete)
-                {
-                    board[square[0], square[1]].State = SquareState.O;
-                    board[square[0], square[1]].DisplayCharacter = "O";
-                    turnComplete = true;
-                    break;
-                }
+                board[computerWin[0], computerWin[1]].State = this.SquareOccupied;
+                board[computerWin[0], computerWin[1]].DisplayCharacter = this.DisplayCharacter;
+                return board;
             }
 
-            foreach (var square in availableMoves)
+            var humanWin = CheckForWinningSquare(board, availableMoves, SquareState.X);
+            if (humanWin != null)
             {
-                bool playerCanWin = DetermineOutcomeOfMove(board, square, SquareState.X);
-                if (playerCanWin && !turnComplete)
-                {
-                    board[square[0], square[1]].State = SquareState.O;
-                    board[square[0], square[1]].DisplayCharacter = "O";
-                    turnComplete = true;
-                    break;
-                }
+                board[humanWin[0], humanWin[1]].State = this.SquareOccupied;
+                board[humanWin[0], humanWin[1]].DisplayCharacter = this.DisplayCharacter;
+                return board;
             }
 
-            if (!turnComplete)
+            var random = new Random();
+            bool turnComplete = false;
+            while (!turnComplete)
             {
-                var random = new Random();
-                while (!turnComplete)
+                var xCoord = random.Next(board.GetLength(0));
+                var yCoord = random.Next(board.GetLength(1));
+                if (board[xCoord, yCoord].State.Equals(SquareState.Empty))
                 {
-                    var xCoord = random.Next(board.GetLength(0));
-                    var yCoord = random.Next(board.GetLength(1));
-                    if (board[xCoord, yCoord].State.Equals(SquareState.Empty))
-                    {
-                        board[xCoord, yCoord].State = SquareState.O;
-                        board[xCoord, yCoord].DisplayCharacter = "O";
-                        turnComplete = true;
-                    }
+                    board[xCoord, yCoord].State = this.SquareOccupied;
+                    board[xCoord, yCoord].DisplayCharacter = this.DisplayCharacter;
+                    turnComplete = true;
                 }
             }
-            
             return board;
         }
 
@@ -64,20 +54,25 @@ namespace NoughtsAndCrosses
             {
                 for (int x = 0; x <= 2; x++)
                 {
-                    if (board[x, y].State == SquareState.Empty)
+                    if (board[y, x].State == SquareState.Empty)
                     {
-                        emptySquares.Add(new int[] { x, y });
+                        emptySquares.Add(new int[] { y, x });
                     }
                 }
             }
             return emptySquares;
         }
 
-        private bool DetermineOutcomeOfMove(Square[,] board, int[] emptySquare, SquareState player)
+        private int[] CheckForWinningSquare(Square[,] board, List<int[]> availableMoves, SquareState player)
         {
-            var theoreticalBoard = new Board { Squares = board };
-            theoreticalBoard.Squares[emptySquare[0], emptySquare[1]].State = player;
-            return WinChecker.CheckForWin(theoreticalBoard.Squares, player);
+            foreach (var square in availableMoves)
+            {
+                board[square[0], square[1]].State = player;
+                bool playerCanWin = WinChecker.CheckForWin(board, player);
+                board[square[0], square[1]].State = SquareState.Empty;
+                if (playerCanWin) return square;
+            }
+            return null;
         }
     }
 }

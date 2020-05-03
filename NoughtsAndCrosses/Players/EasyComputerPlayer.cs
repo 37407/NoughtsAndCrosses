@@ -6,6 +6,8 @@ namespace NoughtsAndCrosses
     {
         public SquareState SquareOccupied => SquareState.O;
 
+        public string DisplayCharacter => "O";
+
         public string WinMessage => "Player O wins!";
 
         public Square[,] PlayerInput(Square[,] board)
@@ -20,7 +22,7 @@ namespace NoughtsAndCrosses
                 if (board[xCoord, yCoord].State.Equals(SquareState.Empty))
                 {
                     board[xCoord, yCoord].State = SquareState.O;
-                    board[xCoord, yCoord].DisplayCharacter = "O";
+                    board[xCoord, yCoord].DisplayCharacter = DisplayCharacter;
                     turnComplete = true;
                 }
             }

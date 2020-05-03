@@ -14,6 +14,8 @@ namespace NoughtsAndCrosses
 
         public SquareState SquareOccupied => SquareState.X;
 
+        public string DisplayCharacter => "X";
+
         public string WinMessage => "Player X wins!";
 
         public Square[,] PlayerInput(Square[,] board)
@@ -34,7 +36,7 @@ namespace NoughtsAndCrosses
                 locationEmpty = UserLocationEmpty(playerCoordinates, board);
             }
             board[playerCoordinates[0], playerCoordinates[1]].State = SquareState.X;
-            board[playerCoordinates[0], playerCoordinates[1]].DisplayCharacter = "X";
+            board[playerCoordinates[0], playerCoordinates[1]].DisplayCharacter = DisplayCharacter;
 
             return board;
         }
