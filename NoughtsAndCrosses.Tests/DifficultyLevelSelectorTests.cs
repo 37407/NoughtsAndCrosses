@@ -25,7 +25,7 @@ namespace NoughtsAndCrosses.Tests
         {
             TestConsoleInputRetriever inputRetriever = new TestConsoleInputRetriever("3");
             var actual = DifficultyLevelSelector.SetComputerPlayerLevel(inputRetriever);
-            Assert.IsType<ImpossibleComputerPlayer>(actual);
+            Assert.IsType<HardComputerPlayer>(actual);
         }
     }
 }

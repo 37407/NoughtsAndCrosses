@@ -12,6 +12,7 @@ namespace NoughtsAndCrosses
 
         public Square[,] PlayerInput(Square[,] board)
         {
+            Console.WriteLine("Player O's turn");
             var availableMoves = GameplayHelper.ListEmptySquares(board);
 
             var computerWin = GameplayHelper.CheckForWinningSquare(board, availableMoves, SquareState.O);

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NoughtsAndCrosses
 {
-    public class ImpossibleComputerPlayer : IPlayer
+    public class HardComputerPlayer : IPlayer
     {
         public SquareState SquareOccupied => SquareState.O;
 
@@ -14,7 +14,8 @@ namespace NoughtsAndCrosses
 
         public Square[,] PlayerInput(Square[,] board)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Player O's turn");
+            var availableMoves = GameplayHelper.ListEmptySquares(board);
         }
     }
 }

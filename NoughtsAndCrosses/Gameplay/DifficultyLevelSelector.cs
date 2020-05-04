@@ -9,7 +9,7 @@ namespace NoughtsAndCrosses
         public static IPlayer SetComputerPlayerLevel(IConsoleInputRetriever inputRetriever)
         {
             Console.WriteLine();
-            Console.WriteLine("Select difficulty level: 1 = easy, 2 = medium, 3 = impossible");
+            Console.WriteLine("Select difficulty level: 1 = easy, 2 = medium, 3 = hard");
             bool computerLevelValid = false;
             while(!computerLevelValid)
             {
@@ -26,7 +26,7 @@ namespace NoughtsAndCrosses
                         break;
                     case "3":
                         computerLevelValid = true;
-                        computerPlayer = new ImpossibleComputerPlayer();
+                        computerPlayer = new HardComputerPlayer();
                         break;
                     default:
                         Console.WriteLine("Please enter 1, 2 or 3.");
