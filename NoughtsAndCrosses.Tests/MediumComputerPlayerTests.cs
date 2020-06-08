@@ -11,6 +11,7 @@ namespace NoughtsAndCrosses.Tests
         {
             var board = new Board();
             var player = new MediumComputerPlayer();
+
             var actual = player.PlayerInput(board.Squares);
 
             var actualSquareSymbols = new List<string>();
@@ -30,6 +31,7 @@ namespace NoughtsAndCrosses.Tests
         {
             var board = new Board();
             var player = new MediumComputerPlayer();
+
             var actual = player.PlayerInput(board.Squares);
 
             var actualSquareStates = new List<SquareState>();
