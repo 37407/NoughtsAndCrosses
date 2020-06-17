@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace NoughtsAndCrosses
 {
@@ -12,42 +12,89 @@ namespace NoughtsAndCrosses
 
         public string WinMessage => "Player O wins!";
 
+        private Dictionary<int[], int> _scores;
+
         public Square[,] PlayerInput(Square[,] board)
         {
             Console.WriteLine("Player O's turn");
 
-            throw new NotImplementedException();
+            _scores = new Dictionary<int[], int>();
 
-            //max calculation for SquareState.O
-            //min calculation for SquareState.X
+            var freeSquares = GameplayHelper.ListEmptySquares(board);
 
-            //for board
-            //int depth = 0;
-            //int score = 0
-            //get available moves
-            //generate a board for each move in availableMoves
-            //foreach of the boards
-            //play the move as this.SquareState
-            //check for win - if win, score = score + (10-depth)
-            //if not win, score +0 depth +1
+            foreach (var square in freeSquares)
+            {
+                Board moveBoard = CloneBoard(board);
+                moveBoard.Squares[square[0], square[1]].State = SquareState.O;
+                var moveScore = MinMax(moveBoard.Squares, SquareState.X, 0);
+                _scores.Add(square, moveScore);
+            }
 
-            //foreach board with score = 0
-            //get available moves
-            //generate a board for each move in availableMoves
-            //switch to opponent SquareState
-            //foreach of the boards
-            //play move as opponent SquareState
-            //check for win - if win, score -10
-            //if not win, score +0
+            var optimalMove = _scores.OrderByDescending(score => score.Value).First();
 
-            //foreach board with score = 0
-            //generate a board for each move in availableMoves
-            //get available moves
-            //switch to this.SquareState
-            //check for win - if win - score +10
-            // if not win, score +0
+            board[optimalMove.Key[0], optimalMove.Key[1]].State = this.SquareOccupied;
+            board[optimalMove.Key[0], optimalMove.Key[1]].DisplayCharacter = this.DisplayCharacter;
+            return board;
+        }
 
-            //etc.
+        private static Board CloneBoard(Square[,] board)
+        {
+            var moveBoard = new Board();
+
+            for (int i = 0; i <= 2; i++)
+            {
+                for (int j = 0; j <= 2; j++)
+                {
+                    moveBoard.Squares[i, j].DisplayCharacter = board[i, j].DisplayCharacter;
+                    moveBoard.Squares[i, j].State = board[i, j].State;
+                }
+            }
+
+            return moveBoard;
+        }
+
+        private int MinMax(Square[,] boardForCurrentMove, SquareState player, int depth)
+        {
+            var availableMoves = GameplayHelper.ListEmptySquares(boardForCurrentMove);
+
+            int score = 0;
+
+            if (availableMoves.Count == 0) return score;
+
+            foreach (var move in availableMoves)
+            {
+                boardForCurrentMove[move[0], move[1]].State = player;
+                if (GameplayHelper.CheckForWin(boardForCurrentMove, player))
+                {
+                    switch (player)
+                    {
+                        case SquareState.X:
+                            score = depth - 10;
+                            break;
+                        case SquareState.O:
+                            score = 10 - depth;
+                            break;
+                    }
+                }
+                else
+                {
+                    depth++;
+                    var boardForNextMove = CloneBoard(boardForCurrentMove);
+                    switch (player)
+                    {
+                        case SquareState.X:
+                            player = SquareState.O;
+                            MinMax(boardForNextMove.Squares, player, depth);
+                            break;
+                        case SquareState.O:
+                            player = SquareState.X;
+                            MinMax(boardForNextMove.Squares, player, depth);
+                            break;
+                    }
+                }
+            }
+
+            return score;
         }
     }
 }

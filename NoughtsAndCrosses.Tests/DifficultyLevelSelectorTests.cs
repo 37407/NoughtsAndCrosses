@@ -21,11 +21,19 @@ namespace NoughtsAndCrosses.Tests
         }
 
         [Fact]
-        public void DifficultyLevelSelector_InputIs3_ReturnsImpossibleComputerPlayer()
+        public void DifficultyLevelSelector_InputIs3_ReturnsHardComputerPlayer()
         {
             TestConsoleInputRetriever inputRetriever = new TestConsoleInputRetriever("3");
             var actual = DifficultyLevelSelector.SetComputerPlayerLevel(inputRetriever);
             Assert.IsType<HardComputerPlayer>(actual);
+        }
+
+        [Fact]
+        public void DifficultyLevelSelector_InputIs4_ReturnsImpossibleComputerPlayer()
+        {
+            TestConsoleInputRetriever inputRetriever = new TestConsoleInputRetriever("4");
+            var actual = DifficultyLevelSelector.SetComputerPlayerLevel(inputRetriever);
+            Assert.IsType<ImpossibleComputerPlayer>(actual);
         }
     }
 }
